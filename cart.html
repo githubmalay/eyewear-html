@@ -37,39 +37,48 @@
 
 
   <div class="container mb-3">
+    <h1 class="mt-4">Your Cart</h1>
     <div class="row">
       <div class="col-md-8">
         <!-- Cart Item 1 -->
-        <div class="cart-item">
-          <div class="media">
-            <img src="p1.webp" class="mr-3" alt="Product">
-            <div class="media-body">
+        <div class="cart-item border-bottom pb-3 mb-3">
+          <div class="row align-items-center">
+            <div class="col-4 col-md-3">
+              <img src="p1.webp" class="img-fluid" alt="Product">
+            </div>
+            <div class="col-8 col-md-9">
               <h4 class="mt-0">Vincent Chase</h4>
               <p>Silver Full Rim Aviator</p>
-              <p>Price: ₹1499</p>
-              <label for="quantity1">Quantity:</label>
-              <input type="number" id="quantity1" class="form-control d-inline" style="width: 80px;" value="1" min="1" onchange="updateTotal()">
-              <button class="btn btn-danger mt-2">Remove</button>
+              <p class="mb-2"><strong>Price:</strong> ₹1499</p>
+              <div class="d-flex align-items-center">
+                <label for="quantity1" class="mr-2">Quantity:</label>
+                <input type="number" id="quantity1" class="form-control d-inline mr-3" style="width: 80px;" value="1" min="1" onchange="updateTotal()">
+                <button class="btn btn-danger btn-sm">Remove</button>
+              </div>
             </div>
           </div>
         </div>
-
+  
         <!-- Cart Item 2 -->
-        <div class="cart-item">
-          <div class="media">
-            <img src="p2.webp" class="mr-3" alt="Product">
-            <div class="media-body">
+        <div class="cart-item border-bottom pb-3 mb-3">
+          <div class="row align-items-center">
+            <div class="col-4 col-md-3">
+              <img src="p2.webp" class="img-fluid" alt="Product">
+            </div>
+            <div class="col-8 col-md-9">
               <h4 class="mt-0">Eyewear Air</h4>
               <p>Black Full Rim Aviator</p>
-              <p>Price: ₹1499</p>
-              <label for="quantity2">Quantity:</label>
-              <input type="number" id="quantity2" class="form-control d-inline" style="width: 80px;" value="1" min="1" onchange="updateTotal()">
-              <button class="btn btn-danger mt-2">Remove</button>
+              <p class="mb-2"><strong>Price:</strong> ₹1499</p>
+              <div class="d-flex align-items-center">
+                <label for="quantity2" class="mr-2">Quantity:</label>
+                <input type="number" id="quantity2" class="form-control d-inline mr-3" style="width: 80px;" value="1" min="1" onchange="updateTotal()">
+                <button class="btn btn-danger btn-sm">Remove</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
+  
       <!-- Cart Summary -->
       <div class="col-md-4">
         <div class="total-price">
@@ -78,23 +87,7 @@
             <h6 class="card-title">Add Your Prescription</h6>
             <input type="file" name="image" accept="image/*" required>
           </div>
-
-          <!-- Detailed list of items -->
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <span>Vincent Chase</span>
-                <span id="item1Price">₹1499</span>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <span>Eyewear Air</span>
-                <span id="item2Price">₹1499</span>
-              </div>
-            </li>
-          </ul> -->
-
+  
           <!-- Subtotal, Shipping, and Total -->
           <ul class="list-group list-group-flush mt-3">
             <li class="list-group-item d-flex justify-content-between">
@@ -117,8 +110,7 @@
       </div>
     </div>
   </div>
-
-
+  
 
   <script>
     function updateTotal() {
