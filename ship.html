@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Address & Billing Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">EYEWEAR</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+  
+
+    <div class="container mb-4">
+        <!-- <h1 class="text-center mb-5">Shipping Address & Billing Information</h1> -->
+
+        <div class="row">
+
+            <!-- Shipping Address -->
+            <div class="payment-form col-md-6 order-first mt-4">
+
+                <h2>Shipping Address</h2>
+                <div class="form-container">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="fullname">Full Name:</label>
+                            <input type="text" id="fullname" name="fullname" class="form-control"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Contact no:</label>
+                            <input type="number" id="contact" name="contact" class="form-control"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" name="address" class="form-control"  >
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city">City:</label>
+                                    <input type="text" id="city" name="city" class="form-control"  >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="zipcode">Pincode:</label>
+                                    <input type="text" id="zipcode" name="zipcode" class="form-control"  >
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    </form>
+                    <a href="thank.html">
+                        <button class="btn btn-primary w-100" onclick="checkout()">Proceed to Payment</button></a>
+
+                </div>
+            </div>
+
+            <!-- Billing Information -->
+            <div class="col-md-6">
+                <div class="payment-form mt-4">
+                        <div class="m-3">
+                          <form>
+                            <div class="form-group">
+                              <label for="paymentMethod">Payment Method</label>
+                              <select class="form-control" id="paymentMethod">
+                                <option value="credit">Credit Card</option>
+                                <option value="debit">Debit Card</option>
+                              </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cardHolderName">Card Holder Name</label>
+                                        <input type="text" class="form-control" id="cardHolderName" placeholder="Enter card holder name">
+                                      </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Card Number</label>
+                                        <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number">
+                                      </div>
+                                </div>
+                            </div>
+                           
+                            
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="cvv">CVV</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                              </div>
+                            </div>
+                                                        </form>
+                        </div>
+                    <h3>Bill details</h3>
+                    <!-- <h6 class="card-title">Add Your Prescription</h6><br>
+
+                    <input type="file" name="image" accept="image/*"  > -->
+                    <!-- Detailed list of items -->
+                    <ul class="list-group list-group-flush">
+                      
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Subtotal</span>
+                            <span>₹2998</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Tax(10%)</span>
+                            <span>₹299</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total</span>
+                            <span>₹2698</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
