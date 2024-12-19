@@ -1,227 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EYEWEAR Website</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
   <style>
-    .btn{
-      font-size: large;
-    }
-  /* Ensuring carousel images maintain aspect ratio */
-  .carousel-inner img {
-    object-fit: cover; /* Keeps images from stretching */
-    height: 400px; /* Default height for desktop */
-    border-radius: none;
-  }
 
-  /* Adjusting height for smaller screens */
-  @media (max-width: 768px) {
+    /* Ensuring carousel images maintain aspect ratio */
     .carousel-inner img {
-      height: 100px; /* Reduced height for mobile */
+      object-fit: cover;
+      /* Keeps images from stretching */
+      height: 400px;
+      /* Default height for desktop */
+      border-radius: none;
     }
-  }
 
+    /* Adjusting height for smaller screens */
+    @media (max-width: 768px) {
+      .carousel-inner img {
+        height: 100px;
+        /* Reduced height for mobile */
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">EYEWEAR</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">EYEWEAR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <li class="nav-item active">
-          <a class="nav-link" href="admin_dashboard.html">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.html">cart</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="loginLink" style="display: none;" href="login.html">Login</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" id="logoutLink" href="#" onclick="logout()" style="display: none;">Logout</a>
-      </li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"> <i class="fas fa-search"></i></button>
+          </form>
+          <li class="nav-item active">
+            <a class="nav-link" href="admin_dashboard.html">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="loginLink" style="display: none;" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="logoutLink" href="#" onclick="logout()" style="display: none;">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+  <!-- Jumbotron Carousel -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100 img-fluid" src="slider2.jpg" alt="First slide">
+      </div>
+    </div>
+
   </div>
-</nav>
- <!-- Jumbotron Carousel -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100 img-fluid" src="slider2.jpg" alt="First slide">
-    </div>
-  </div>
-
-</div>
 
 
-<div class="container-fluied m-3 mt-5">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="product-card">
-        <img src="p1.webp" alt="Product 1" class="img-fluid">
-        <h3>Vincent Chase</h3>
-        <h5>₹1499</h5>
-        
-        <button type="button" class="btn btn-primary" onclick="showProductDetails(1)">View Details</button>
-          <a href="cart.html" type="button" class="btn btn-primary">Buy Now</a>
- 
-
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="product-card">
-        <img src="p2.webp" alt="Product 2" class="img-fluid">
-        <h3>Eyewear Air</h3>
-        <h5>₹1499</h5>
-        <button type="button" class="btn btn-primary" onclick="showProductDetails(2)">View Details</button>
-        <a href="cart.html" type="button" class="btn btn-primary">Buy Now</a>
+  <div class="container-fluied m-3 mt-5">
+    <div class="row">
+      <div class="col-md-3">
+        <a onclick="showProductDetails(1)">
+        <div class="product-card">
+          <img src="p1.webp" alt="Product 1" class="img-fluid">
+          <h3>Vincent Chase</h3>
+          <h5>₹1499</h5>
+        </a>
+        <a href="cart.html" type="button" class="btn btn-primary w-100 mt-2">Buy Now</a>
 
 
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="product-card">
-        <img src="p3.webp" alt="Product 3" class="img-fluid">
-        <h3>Vincent Chase</h3>
-        <h5>₹1499</h5>
-        <button type="button" class="btn btn-primary" onclick="showProductDetails(3)">View Details</button>
-        <a href="cart.html" type="button" class="btn btn-primary">Buy Now</a>
-
-
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="product-card">
-        <img src="p1.webp" alt="Product 1" class="img-fluid">
-        <h3>Vincent Chase</h3>
-        <h5>₹1499</h5>
-        <button type="button" class="btn btn-primary" onclick="showProductDetails(1)">View Details</button>
-        <a href="cart.html" type="button" class="btn btn-primary">Buy Now</a>
-
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Product Modal -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="productModalLabel">Product Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="productDetails">
-        <!-- Product details will be displayed here -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add to Cart</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Product Details Modal -->
-<div class="modal fade" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="productDetailModalLabel">Product Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-5">
-            <img id="modalProductImage" src="" alt="Product Image" class="img-fluid" style="max-height: 250px; width: auto;">
-          </div>
-          <div class="col-md-7">
-            <h2 id="modalProductName"></h2>
-            <p id="modalProductDescription"></p>
-            <h4 id="modalProductPrice" class="text-primary"></h4>
-          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <a href="cart.html" class="btn btn-primary " id="addToCartButton">Add to Cart</a>
+      <div class="col-md-3">
+        <a onclick="showProductDetails(2)">
+          <div class="product-card">
+            <img src="p2.webp" alt="Product 2" class="img-fluid">
+            <h3>Eyewear Air</h3>
+            <h5>₹1499</h5>
+        </a>
+        <a href="cart.html" type="button" class="btn btn-primary w-100 mt-2">Buy Now</a>
 
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <a onclick="showProductDetails(3)">
+        <div class="product-card">
+          <img src="p3.webp" alt="Product 3" class="img-fluid">
+          <h3>Vincent Chase</h3>
+          <h5>₹1499</h5>
+      </a>
+      <a href="cart.html" type="button" class="btn btn-primary w-100 mt-2">Buy Now</a>
+
+
+    </div>
+  </div>
+  <div class="col-md-3">
+    <a onclick="showProductDetails(1)">
+      <div class="product-card">
+        <img src="p1.webp" alt="Product 1" class="img-fluid">
+        <h3>Vincent Chase</h3>
+        <h5>₹1499</h5>
+    </a>
+    <a href="cart.html" type="button" class="btn btn-primary w-100 mt-2">Buy Now</a>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="productDetails">
+          <!-- Product details will be displayed here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add to Cart</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- Product Details Modal -->
+  <div class="modal fade" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productDetailModalLabel">Product Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-5">
+              <img id="modalProductImage" src="" alt="Product Image" class="img-fluid"
+                style="max-height: 250px; width: auto;">
+            </div>
+            <div class="col-md-7">
+              <h2 id="modalProductName"></h2>
+              <p id="modalProductDescription"></p>
+              <h4 id="modalProductPrice" class="text-primary"></h4>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="cart.html" class="btn btn-primary " id="addToCartButton">Add to Cart</a>
 
-<footer class="footer">
-  <div class="container">
-    <p class="text-center">&copy; 2024 EYEWEAR. All rights reserved.</p>
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </div>
   </div>
-</footer>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="script.js"></script>
-<script>
-  // Example data for demonstration
-const productData = [
-  {
-    id: 1,
-    name: "Vincent Chase",
-    price: "₹1499",
-    image: "p1.webp",
-    description: "Stylish eyewear with superior lens quality."
-  },
-  {
-    id: 2,
-    name: "Eyewear Air",
-    price: "₹1499",
-    image: "p2.webp",
-    description: "Lightweight and durable, perfect for daily use."
-  },
-  {
-    id: 3,
-    name: "Vincent Chase Premium",
-    price: "₹1999",
-    image: "p3.webp",
-    description: "Premium eyewear with a sleek and elegant design."
-  }
-];
+  <footer class="footer">
+    <div class="container">
+      <p class="text-center">&copy; 2024 EYEWEAR. All rights reserved.</p>
+    </div>
+  </footer>
 
-// Function to show product details in the modal
-function showProductDetails(productId) {
-  const product = productData.find(p => p.id === productId);
-  if (product) {
-    document.getElementById('modalProductImage').src = product.image;
-    document.getElementById('modalProductName').textContent = product.name;
-    document.getElementById('modalProductPrice').textContent = product.price;
-    document.getElementById('modalProductDescription').textContent = product.description;
-    $('#productDetailModal').modal('show');
-  }
-}
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Example data for demonstration
+    const productData = [
+      {
+        id: 1,
+        name: "Vincent Chase",
+        price: "₹1499",
+        image: "p1.webp",
+        description: "Stylish eyewear with superior lens quality."
+      },
+      {
+        id: 2,
+        name: "Eyewear Air",
+        price: "₹1499",
+        image: "p2.webp",
+        description: "Lightweight and durable, perfect for daily use."
+      },
+      {
+        id: 3,
+        name: "Vincent Chase Premium",
+        price: "₹1999",
+        image: "p3.webp",
+        description: "Premium eyewear with a sleek and elegant design."
+      }
+    ];
 
-// Attach event listeners to product cards (modify for your specific layout)
-document.querySelectorAll('.product-card button').forEach((button, index) => {
-  button.addEventListener('click', () => showProductDetails(index + 1));
-});
+    // Function to show product details in the modal
+    function showProductDetails(productId) {
+      const product = productData.find(p => p.id === productId);
+      if (product) {
+        document.getElementById('modalProductImage').src = product.image;
+        document.getElementById('modalProductName').textContent = product.name;
+        document.getElementById('modalProductPrice').textContent = product.price;
+        document.getElementById('modalProductDescription').textContent = product.description;
+        $('#productDetailModal').modal('show');
+      }
+    }
 
-</script>
+    // Attach event listeners to product cards (modify for your specific layout)
+    document.querySelectorAll('.product-card button').forEach((button, index) => {
+      button.addEventListener('click', () => showProductDetails(index + 1));
+    });
+
+  </script>
 </body>
+
 </html>

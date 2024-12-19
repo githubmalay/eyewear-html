@@ -37,7 +37,7 @@ body {
 .product-card {
   background-color: #fff; /* White card */
   border: 1px solid #ddd; /* Light gray border */
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   padding: 15px;
@@ -175,6 +175,9 @@ body {
 .btn-primary {
   background-color: #003366; /* Blue button */
   border-color: #003366;
+  border-radius: 18px;
+  padding: 5px;
+  font-size: large;
 }
 
 .btn-primary:hover {
