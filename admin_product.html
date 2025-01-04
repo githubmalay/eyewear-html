@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management - EYEWEAR</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="admin_style.css">
+    <style>
+          .card-img-top {
+            height: 500px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease-in-out;
+        }
+
+    </style>
+</head>
+
+<body>
+      <!-- Header -->
+      <header>
+        <h1>Product Management</h1>
+        <!-- <button id="logoutBtn">Logout</button> -->
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="admin_dashboard.html">Dashboard</a></li>
+            <li><a href="admin_product.html">Products</a></li>
+            <li><a href="admin_order.html">Orders</a></li>
+            <li><a href="admin_customer.html">Customers</a></li>
+            <li><a href="admin_feedback.html">Feedback</a></li>
+
+            <!-- <li><a href="admin_inventory.html">inventory</a></li>
+            <li><a href="admin_analysis.html">Analytics</a></li> -->
+            <!-- <li><a href="#">Settings</a></li> -->
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </div>
+
+        <div class="content">
+            <!-- Add New Product Form -->
+
+            <!-- Product List Section -->
+            <h2>Product List</h2>
+            <a href="admin_product.html"class="btn btn-primary m-3 btn-md">Add product</a>
+            <div class="row" id="product-list">
+                <!-- Product cards will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        // Dummy product data (replace with actual data from backend)
+        const products = [
+            { id: 1, name: "Vincent Chase", price: 1499, category: "glasses", image: "p1.webp", description: "Stylish eyeglasses" },
+            { id: 2, name: "Huster", price: 1499, category: "sunglasses", image: "p2.webp", description: "Trendy sunglasses" },
+            { id: 3, name: "Vincent Chase", price: 1499, category: "glasses", image: "p3.webp", description: "Comfortable eyeglasses" }
+        ];
+
+        // Function to render product list
+        function renderProductList() {
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = "";
+
+            products.forEach(product => {
+                const col = document.createElement("div");
+                col.classList.add("col-md-3", "mb-4");
+
+                col.innerHTML = `
+                    <div class="card h-100">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">₹${product.price}</p>
+                            <p class="card-text">${product.description}</p>
+                            <a href="admin_product.html" class="btn #fff btn-primary" onclick="editProduct(${product.id})">Edit</a>
+                            <button class="btn #fff btn-danger" onclick="removeProduct(${product.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(col);
+            });
+        }
+
+        // Function to add a new product
+        function addProduct(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const productData = Object.fromEntries(formData.entries());
+            productData.id = products.length + 1; // Generate unique ID (replace with backend ID generation)
+            productData.image = "product" + Math.floor(Math.random() * 1000) + ".jpg"; // Random image for demo
+            products.push(productData);
+            renderProductList();
+            form.reset();
+        }
+
+        // Function to remove a product
+        function removeProduct(productId) {
+            const index = products.findIndex(p => p.id === productId);
+            if (index !== -1) {
+                products.splice(index, 1);
+                renderProductList();
+            }
+        }
+
+        // Initialize product list
+        renderProductList();
+
+        // Add event listener to form
+        document.getElementById("add-product-form").addEventListener("submit", addProduct);
+    </script>
+
+</body>
+
+</html>

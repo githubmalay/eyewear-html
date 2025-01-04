@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e6f3ff, #f0e8ff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            background-color: #003366;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: #cce7ff !important;
+        }
+
+        .thank-you-container {
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            margin-top: 80px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .thank-you-container .fa-check-circle {
+            font-size: 90px;
+            color: #28a745;
+            margin-bottom: 20px;
+            animation: bounceIn 1.5s ease infinite alternate;
+        }
+
+        @keyframes bounceIn {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        h1 {
+            font-size: 2.7rem;
+            color: #003366;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 10px rgba(0, 91, 173, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary i {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+
+            .btn-primary {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html">EYEWEAR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+         
+         
+         
+         
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i>
+                   
+            Cart
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="order history.html"><i class="fa-solid fa-clipboard-check"></i> Orders</a>
+        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+            </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Thank You Message -->
+    <div class="thank-you-container">
+        <i class="fas fa-check-circle"></i>
+        <h1>Thank You for Your Purchase!</h1>
+        <p>Your order has been placed successfully. We hope to see you again soon!</p>
+        <a href="homepage.html" class="btn btn-primary"><i class="fas fa-shopping-bag"></i> Continue Shopping</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

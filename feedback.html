@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f4f8; /* Soft background color */
+            font-family: 'Roboto', sans-serif; /* Modern font */
+        }
+        .navbar {
+            background-color: #003366;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #cce7ff !important;
+        }
+
+h3{
+    color: #003366;
+
+}
+        .feedback-card {
+            margin: 40px auto; /* Centered margin */
+            padding: 30px; /* Increased padding */
+            border-radius: 12px; /* Softer corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+            background-color: #ffffff; /* White card background */
+            max-width: 600px; /* Max width for larger screens */
+            transition: transform 0.3s; /* Animation on hover */
+        }
+
+ 
+        .card-title {
+            color: #333; /* Dark text for title */
+            margin-bottom: 20px; /* Space below title */
+            text-align: center; /* Center title */
+        }
+     
+        .form-group label {
+            font-weight: bold; /* Bold labels for better readability */
+            color: #555; /* Softer label color */
+        }
+
+        textarea {
+            border-radius: 5px; /* Rounded textarea */
+            border: 1px solid #ccc; /* Light border */
+            transition: border-color 0.3s; /* Transition effect */
+        }
+
+        textarea:focus {
+            border-color: #007bff; /* Change border color on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Shadow effect on focus */
+        }
+
+        .star-rating {
+            display: flex; /* Flex for star rating alignment */
+            font-size: 2em; /* Larger stars */
+            color: #d3d3d3; /* Light gray color for unselected stars */
+            cursor: pointer; /* Pointer cursor for stars */
+            flex-direction: row-reverse; /* Reverse direction of stars */
+            justify-content: center; /* Center stars */
+            margin-bottom: 15px; /* Space below stars */
+        }
+
+        .star-rating input {
+            display: none; /* Hide radio inputs */
+        }
+
+        .star-rating label {
+            color: #d3d3d3; /* Default star color */
+            transition: color 0.2s; /* Smooth transition for color change */
+        }
+
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f5c518; /* Gold color for selected stars */
+        }
+
+        .btn-primary {
+            border: none; /* Remove border */
+            transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+            background-color: #003366;
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+       
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+        footer {
+            text-align: center; /* Centered footer */
+            margin-top: 40px; /* Space above footer */
+            color: #777; /* Light text color */
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html">EYEWEAR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+         
+         
+         
+         
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i>
+                   
+            Cart
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="order history.html"><i class="fa-solid fa-clipboard-check"></i> Orders</a>
+        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+            </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+   <div class="container mt-4">
+        <div class="feedback-card card">
+        <h3 class="text-center mb-2">Leave Your Feedback</h3>
+
+            <div class="card-body">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="meet@gmail.com" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5"  />
+                            <label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"  />
+                            <label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"  />
+                            <label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"  />
+                            <label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1"  />
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    <a href="homepage.html" type="submit" class="btn btn-primary btn-block">Submit Feedback</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

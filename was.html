@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e6f2ff;
+            color: #003366;
+        }
+
+        .navbar {
+            background-color: #003366;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover,
+        .nav-link:hover {
+            color: #cce7ff !important;
+        }
+
+        .h4 {
+            color: #003366;
+            font-weight: 500;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border: none;
+        }
+
+        .card-header {
+            background-color: #003366;
+
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .card-body {
+            padding: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+            color: #003366;
+        }
+
+        .btn-primary {
+            max-width: 96%;
+            margin-left: 12px;
+            background-color: #003366;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            color: #003366;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            box-shadow: none;
+            margin-top: 5px;
+            color: #003366;
+        }
+
+        .form-control:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 85, 179, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .summary-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+    <title>Checkout</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="homepage.html">EYEWEAR</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+             
+             
+             
+             
+              <li class="nav-item position-relative">
+                <a class="nav-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i>
+                       
+                Cart
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="order history.html"><i class="fa-solid fa-clipboard-check"></i> Orders</a>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+                </li>
+    
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-lg-12 mb-1">
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-shipping-fast"></i> Shipping Details & Payment</div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shipping_name">Name</label>
+                                                <input type="text" class="form-control" id="shipping_name" name="shipping_name" value="meet patel" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shipping_contact">Mobile Number</label>
+                                                <input type="text" class="form-control" id="shipping_contact" name="shipping_contact" value="1234567890" pattern="^\d{10}$" title="Please enter a valid 10-digit mobile number" required>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="shipping_email">Email</label>
+                                        <input type="email" class="form-control" id="shipping_email" name="shipping_email" value="meet@gmail.com" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="shipping_address">Address</label>
+                                        <input type="text" class="form-control" id="shipping_address" name="shipping_address" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shipping_city">City</label>
+                                                <input type="text" class="form-control" id="shipping_city" name="shipping_city" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shipping_zip">Pin Code</label>
+                                                <input type="text" class="form-control" id="shipping_zip" name="shipping_zip" pattern="^\d{6}$" title="Please enter a valid 6-digit pin code" required>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="prescription">Upload Prescription:</label>
+                                            <input type="file" class="form-control" id="prescription" name="prescription" accept=".pdf,.jpg,.jpeg,.png">
+                                        </div>
+                                        <button type="submit" name="order" value="place order" class="btn btn-primary w-100 mt-1">Place Order</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="payment_method">Payment Method</label>
+                                        <select class="form-control" id="payment_method" name="payment_method" required>
+                                            <option value="credit_card">Credit Card</option>
+                                            <option value="debit_card">Debit Card</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cardholder_name">Cardholder Name</label>
+                                                <input type="text" class="form-control" id="cardholder_name" name="cardholder_name" placeholder="Cardholder name" pattern="^[A-Za-z\s]+$" title="Name should contain only letters and spaces" required>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="card_number">Card Number</label>
+                                                <input type="text" class="form-control" id="card_number" name="card_number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" pattern="^(\d{4}\s){3}\d{4}$" title="Card number must be in the format xxxx xxxx xxxx xxxx" required>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="expiry_date">Expiry Date (MM/YY)</label>
+                                                <input type="text" class="form-control" id="expiry_date" name="expiry_date" maxlength="5" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Enter a valid expiry date in MM/YY format" required>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cvv">CVV</label>
+                                                <input type="text" class="form-control" id="cvv" name="cvv" maxlength="3" placeholder="XXX" pattern="^\d{3}$" title="CVV must be a 3-digit number" required>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <h1 class="text-center mt-3 h4">Bill Summary</h1>
+                                    <table class="table">
+                                        
+                                        <tbody>
+
+
+                                        </tbody>
+                                        <tfoot>
+                                          
+                                            <tr>
+                                                <th colspan="3">Sub total</th>
+                                                <th>₹6099.00</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3">Tax (10%)</th>
+                                                <th>₹609.90</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3">Shipping</th>
+                                                <th>Free</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3">Total</th>
+                                                <th>₹6708.90</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

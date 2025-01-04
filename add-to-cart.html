@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add to Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">EYEWEAR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="homepage.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="homepage.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    <h1 class="display-4">Your Cart</h1>
+    <p class="lead">Manage the items in your cart</p>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Cart Item 1 -->
+        <div class="cart-item">
+          <div class="media">
+            <img src="p1.webp" class="mr-3" alt="Product">
+            <div class="media-body">
+              <h4 class="mt-0">Vincent Chase</h4>
+              <p>Silver Full Rim Aviator</p>
+              <p>Price: ₹1499</p>
+              <label for="quantity1">Quantity:</label>
+              <input type="number" id="quantity1" class="form-control d-inline" style="width: 80px;" value="1" min="1" onchange="updateTotal()">
+              <button class="btn btn-danger mt-2">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="cart-item">
+          <div class="media">
+            <img src="p2.webp" class="mr-3" alt="Product">
+            <div class="media-body">
+              <h4 class="mt-0">Eyewear Air</h4>
+              <p>Black Full Rim Aviator</p>
+              <p>Price: ₹1499</p>
+              <label for="quantity2">Quantity:</label>
+              <input type="number" id="quantity2" class="form-control d-inline" style="width: 80px;" value="1" min="1" onchange="updateTotal()">
+              <button class="btn btn-danger mt-2">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="col-md-4 text-dark">
+        <div class="total-price">
+          <div class="card-body">
+            <h3 class="mb-3">Cart Summary</h3>
+            <h6 class="card-title">Add Your Prescription</h6>
+            <input type="file" name="image" accept="image/*" required>
+          </div>
+
+          <!-- Detailed list of items -->
+          <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <span>Vincent Chase</span>
+                <span id="item1Price">₹1499</span>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <span>Eyewear Air</span>
+                <span id="item2Price">₹1499</span>
+              </div>
+            </li>
+          </ul> -->
+
+          <!-- Subtotal, Shipping, and Total -->
+          <ul class="list-group list-group-flush  mt-3">
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Subtotal</span>
+              <span id="subtotal">₹2998</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Shipping</span>
+              <span>Free</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total</span>
+              <span id="totalPrice">₹2998</span>
+            </li>
+          </ul>
+          <a href="ship.html">
+            <button class="btn btn-primary mt-3">Proceed to Checkout</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <!-- <div class="row">
+        <div class="col-md-6">
+          <h4>Contact Us</h4>
+          <p>Address: 123 Main Street, City, Country</p>
+          <p>Phone: +1-123-456-7890</p>
+          <p>Email: info@eyewear.com</p>
+        </div>
+        <div class="col-md-6">
+          <h4>Follow Us</h4>
+          <ul class="list-inline">
+            <li>
+              Facebook<br>
+              Twitter<br>
+              Instagram<br>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr> -->
+      <p class="text-center">&copy; 2024 EYEWEAR. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function updateTotal() {
+      let quantity1 = document.getElementById('quantity1').value;
+      let quantity2 = document.getElementById('quantity2').value;
+      let price1 = 1499;
+      let price2 = 1499;
+      
+      let total1 = price1 * quantity1;
+      let total2 = price2 * quantity2;
+      
+      document.getElementById('item1Price').innerText = '₹' + total1;
+      document.getElementById('item2Price').innerText = '₹' + total2;
+      
+      let subtotal = total1 + total2;
+      document.getElementById('subtotal').innerText = '₹' + subtotal;
+      document.getElementById('totalPrice').innerText = '₹' + subtotal;
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

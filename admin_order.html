@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management - EYEWEAR</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="admin_style.css">
+    <style>
+        /* Set a fixed height for the order cards */
+        .card {
+            height: 100%;
+        }
+
+        /* Ensure the columns fill the available height */
+        .col {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 20px;
+        }
+
+        /* Make the card body take up all available space */
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Order Management</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="admin_dashboard.html">Dashboard</a></li>
+            <li><a href="admin_product.html">Products</a></li>
+            <li><a href="admin_order.html">Orders</a></li>
+            <li><a href="admin_customer.html">Customers</a></li>
+            <li><a href="admin_feedback.html">Feedback</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container-fluied m-2 mt-2">
+            <div class="row" id="order-list">
+                <!-- Order items will be dynamically added here -->
+            </div>
+        </div>
+
+        <script>
+            const orders = [
+                {
+                    id: 1,
+                    customer_name: "Meet Patel",
+                    customer_email: "meet@gmail.com",
+                    customer_address: "123 Main St, Cityville",
+                    product_name: "Vincent Chase",
+                    quantity: 2,
+                    total_price: 200,
+                    payment_date: "2024-10-01",
+                    payment_method: "Credit Card",
+                    payment_status: "Completed"
+                },
+                {
+                    id: 2,
+                    customer_name: "Zeel Patel",
+                    customer_email: "zeel@gmail.com",
+                    customer_address: "456 Elm St, Townsville",
+                    product_name: "Sunglasses",
+                    quantity: 1,
+                    total_price: 150,
+                    payment_date: "2024-10-02",
+                    payment_method: "Debit Card",
+                    payment_status: "Pending"
+                },
+                {
+                    id: 3,
+                    customer_name: "Krunal Patel",
+                    customer_email: "krunal@gmail.com",
+                    customer_address: "789 Oak St, Villagetown",
+                    product_name: "Vincent Chase",
+                    quantity: 5,
+                    total_price: 500,
+                    payment_date: "2024-10-03",
+                    payment_method: "Debit Card",
+                    payment_status: "Processing"
+                }
+            ];
+
+            function renderOrderList() {
+                const orderList = document.getElementById("order-list");
+                orderList.innerHTML = "";
+
+                orders.forEach(order => {
+                    const col = document.createElement("div");
+                    col.classList.add("col-12", "col-md-6", "col-lg-4", "mb-4");
+                    col.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${order.customer_name}</h5>
+                                <p class="card-text"><strong>Email:</strong> ${order.customer_email}</p>
+                                <p class="card-text"><strong>Address:</strong> ${order.customer_address}</p>
+                                <p class="card-text"><strong>Product:</strong> ${order.product_name}</p>
+                                <p class="card-text"><strong>Quantity:</strong> ${order.quantity}</p>
+                                <p class="card-text"><strong>Total Price:</strong> ₹${order.total_price}</p>
+                                <p class="card-text"><strong>Payment Date:</strong> ${order.payment_date}</p>
+                                <p class="card-text"><strong>Payment Method:</strong> ${order.payment_method}</p>
+                                <p class="card-text"><strong>Status:</strong></p>
+                                <select class="form-control" onchange="updateStatus(${order.id}, this.value)">
+                                    <option value="Pending" ${order.payment_status === "Pending" ? "selected" : ""}>Pending</option>
+                                    <option value="Processing" ${order.payment_status === "Processing" ? "selected" : ""}>Processing</option>
+                                    <option value="Out for Delivery" ${order.payment_status === "Out for Delivery" ? "selected" : ""}>Out for Delivery</option>
+                                    <option value="Delivered" ${order.payment_status === "Delivered" ? "selected" : ""}>Delivered</option>
+                                </select>
+                                <div class="order-actions mt-3">
+                                    <button class="btn btn-primary" onclick="editOrder(${order.id})">Edit</button>
+                                    <button class="btn btn-danger" onclick="removeOrder(${order.id})">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    orderList.appendChild(col);
+                });
+            }
+
+            function updateStatus(orderId, newStatus) {
+                const order = orders.find(order => order.id === orderId);
+                if (order) {
+                    order.payment_status = newStatus;
+                    renderOrderList();
+                }
+            }
+
+            function removeOrder(orderId) {
+                const index = orders.findIndex(order => order.id === orderId);
+                if (index !== -1) {
+                    orders.splice(index, 1);
+                    renderOrderList();
+                }
+            }
+
+            // Initialize order list
+            renderOrderList();
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+</body>
+</html>
