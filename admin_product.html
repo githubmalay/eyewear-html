@@ -4,118 +4,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management - EYEWEAR</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="admin_style.css">
+    <title>Manage Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
-          .card-img-top {
-            height: 500px;
-            object-fit: cover;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            transition: transform 0.3s ease-in-out;
+        body {
+            background-color: #f8f9fa;
+            /* Light grey background */
+            font-family: 'Poppins', sans-serif;
+            color: #343a40;
+            /* Dark text */
         }
 
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s;
+        }
+
+        .sidebar h2 {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            color: #343a40;
+            text-decoration: none;
+            display: block;
+            padding: 0px 14px;
+            margin: 10px 0;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: black;
+        }
+
+        .navbar {
+            position: relative;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 17px 20px;
+             color: #343a40;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h4 {
+            margin: 0;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .navbar .user-info i {
+            margin-right: 10px;
+            color: #343a40;
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #ffffff;
+            width: 100%;
+        }
+
+        .card {
+            margin: 5px;
+            border: none;
+            /* Remove border */
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Card shadow */
+            transition: transform 0.3s ease;
+            /* Smooth hover transition */
+
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 250px;
+                position: fixed;
+                height: 100vh;
+            }
+            .navbar {
+                width: 100%;
+                width: calc(100% - 250px);
+                left: 250px;
+                position: fixed;
+                top: 0;
+            }
+            .main-content {
+                margin-left: 250px;
+                padding-top: 80px;
+            }
+        }
     </style>
+
 </head>
 
 <body>
-      <!-- Header -->
-      <header>
-        <h1>Product Management</h1>
-        <!-- <button id="logoutBtn">Logout</button> -->
-    </header>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Eyewear</h2>
+            <a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <hr>
+            <a href="admin_product.html"><i class="fas fa-box-open"></i> Products</a>
+            <hr>
+            <a href="admin_order.html"><i class="fas fa-shopping-cart"></i> Orders</a>
+            <hr>
+            <a href="admin_customer.html"><i class="fas fa-user"></i> Users</a>
+            <hr>
+            <a href="admin_feedback.html"><i class="fas fa-comments"></i> Feedback</a>
+            <hr>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <hr>
+        </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="admin_dashboard.html">Dashboard</a></li>
-            <li><a href="admin_product.html">Products</a></li>
-            <li><a href="admin_order.html">Orders</a></li>
-            <li><a href="admin_customer.html">Customers</a></li>
-            <li><a href="admin_feedback.html">Feedback</a></li>
+        <!-- Navbar -->
+        <div class="navbar">
+            <h4>Products</h4>
+            <div class="user-info">
+                <button type="button" class="btn btn-dark btn-sm mx-4" data-bs-toggle="modal"
+                    data-bs-target="#addProductModal">
+                    Add Product
+                </button>
+                <i class="fas fa-user-circle"></i>
+                <span>Admin</span>
+            </div>
+        </div>
 
-            <!-- <li><a href="admin_inventory.html">inventory</a></li>
-            <li><a href="admin_analysis.html">Analytics</a></li> -->
-            <!-- <li><a href="#">Settings</a></li> -->
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Product List -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <img src="img12.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Blu (ID:1)</h5>
+                                    <p class="card-text">Stylish and comfortable eyewear for daily use.</p>
+                                    <p class="card-text">power lens</p>
+                                    <p class="card-text"><strong>Price: </strong>₹1200</p>
+                                    <div>
 
-        <div class="content">
-            <!-- Add New Product Form -->
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editProductModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
 
-            <!-- Product List Section -->
-            <h2>Product List</h2>
-            <a href="admin_product.html"class="btn btn-primary m-3 btn-md">Add product</a>
-            <div class="row" id="product-list">
-                <!-- Product cards will be dynamically added here -->
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-success">Out of Stock </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+
+                                <img src="img9.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Sun (ID:2)</h5>
+                                    <p class="card-text">Protect your eyes from the sun with this premium eyewear</p>
+                                    <p class="card-text">Sunglasses</p>
+                                    <p class="card-text"><strong>Price: </strong>₹3000</p>
+                                    <div>
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editProductModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                 
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-success">Out of Stock </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+
+                                <img src="hust2.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Huster (ID:3)</h5>
+                                    <p class="card-text">Elegant eyewear for a fashionable look.</p>
+                                    <p class="card-text">  Power Lens                                    </p>
+                                    <p class="card-text"><strong>Price: </strong>3599</p>
+                                    <div>
+
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editProductModal">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-danger">In Stock </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+
+                                <img src="11.2.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Air (ID:4)</h5>
+                                    <p class="card-text">Lightweight and durable eyewear.</p>
+                                    <p class="card-text">Sunglasses</p>
+                                    <p class="card-text"><strong>Price: </strong>1999</p>
+                                    <div>
+
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editProductModal">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-danger">In Stock </a>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Product Modal -->
+                        <div class="modal fade" id="editProductModal" tabindex="-1"
+                            aria-labelledby="editProductModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="manage_product.html" method="POST" enctype="multipart/form-data">
+                                            <input type="hidden" name="product_id"
+                                                value="1">
+                                            <div class="form-group mb-3">
+                                                <label for="product_name">Product Name</label>
+                                                <input type="text" class="form-control" name="name" id="product_name"
+                                                    value="Eyewear" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="product_description">Description</label>
+                                                <textarea class="form-control" name="description"
+                                                    id="product_description"
+                                                    required>Protect your eyes from the sun with this premium eyewear</textarea>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="product_category">Category</label>
+                                                <select class="form-control" name="category" id="product_category"
+                                                    required>
+                                                    <option value="Sunglasses" 
+                                                        >Sunglasses</option>
+                                                    <option value="Zero Power Frames">Zero Power Frames</option>
+                                                    <option value="Power Lens"
+                                                        >Power Lens</option>
+                                                    <option value="Combo frames" 
+                                                        >Combo frames</option>
+                                                    <!-- Add more categories here -->
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="product_price">Price</label>
+                                                <input type="number" class="form-control" name="price"
+                                                    id="product_price" value="1"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="product_image">Product Image</label>
+                                                <input type="file" class="form-control" name="image" id="product_image">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" name="update_product">Update
+                                                Product</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Script -->
-    <script>
-        // Dummy product data (replace with actual data from backend)
-        const products = [
-            { id: 1, name: "Vincent Chase", price: 1499, category: "glasses", image: "p1.webp", description: "Stylish eyeglasses" },
-            { id: 2, name: "Huster", price: 1499, category: "sunglasses", image: "p2.webp", description: "Trendy sunglasses" },
-            { id: 3, name: "Vincent Chase", price: 1499, category: "glasses", image: "p3.webp", description: "Comfortable eyeglasses" }
-        ];
-
-        // Function to render product list
-        function renderProductList() {
-            const productList = document.getElementById("product-list");
-            productList.innerHTML = "";
-
-            products.forEach(product => {
-                const col = document.createElement("div");
-                col.classList.add("col-md-3", "mb-4");
-
-                col.innerHTML = `
-                    <div class="card h-100">
-                        <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 200px;">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
-                            <p class="card-text">₹${product.price}</p>
-                            <p class="card-text">${product.description}</p>
-                            <a href="admin_product.html" class="btn #fff btn-primary" onclick="editProduct(${product.id})">Edit</a>
-                            <button class="btn #fff btn-danger" onclick="removeProduct(${product.id})">Delete</button>
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="manage_product.html" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="product_name">Product Name</label>
+                            <input type="text" class="form-control" name="name" id="product_name" required>
                         </div>
-                    </div>
-                `;
-                productList.appendChild(col);
-            });
-        }
+                        <div class="form-group mb-3">
+                            <label for="product_description">Description</label>
+                            <textarea class="form-control" name="description" id="product_description"
+                                required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product_category">Category</label>
+                            <select class="form-control" name="category" id="product_category" required>
+                                <option value="Sunglasses">Sunglasses</option>
+                                <option value="Zero Power Frames">Zero Power Frames</option>
+                                <option value="Power Lens">Power Lens</option>
+                                <option value="Combo frames">Combo frames</option>
 
-        // Function to add a new product
-        function addProduct(event) {
-            event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
-            const productData = Object.fromEntries(formData.entries());
-            productData.id = products.length + 1; // Generate unique ID (replace with backend ID generation)
-            productData.image = "product" + Math.floor(Math.random() * 1000) + ".jpg"; // Random image for demo
-            products.push(productData);
-            renderProductList();
-            form.reset();
-        }
+                                <!-- Add more categories here -->
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product_price">Price</label>
+                            <input type="number" class="form-control" name="price" id="product_price" required>
+                        </div>
 
-        // Function to remove a product
-        function removeProduct(productId) {
-            const index = products.findIndex(p => p.id === productId);
-            if (index !== -1) {
-                products.splice(index, 1);
-                renderProductList();
-            }
-        }
+                        <div class="form-group mb-3">
+                            <label for="product_image">Product Image</label>
+                            <input type="file" class="form-control" name="image" id="product_image" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="add_product">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Initialize product list
-        renderProductList();
-
-        // Add event listener to form
-        document.getElementById("add-product-form").addEventListener("submit", addProduct);
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
