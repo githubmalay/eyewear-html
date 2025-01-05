@@ -1,90 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Reviews - EYEWEAR</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="admin_style.css">
+    <title>Admin Feedback</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Star rating styling */
-        .stars {
-            color: #f4c150;
-            font-size: 1.5rem;
+              body {
+            background-color: #f8f9fa;
+            /* Light grey background */
+            font-family: 'Poppins', sans-serif;
+            color: #343a40;
+            /* Dark text */
         }
 
-        .stars .empty-star {
-            color: #ddd;
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
         }
-        .card {
-            margin-bottom: 20px; /* Space between cards */
-            border-radius: 20px; /* Rounded corners */
-            transition: transform 0.2s; /* Animation for hover effect */
+
+        .sidebar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s;
         }
-     
+
+        .sidebar h2 {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            color: #343a40;
+            text-decoration: none;
+            display: block;
+            padding: 0px 14px;
+            margin: 10px 0;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: black;
+        }
+
+        .navbar {
+            position: relative;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 17px 20px;
+             color: #343a40;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h4 {
+            margin: 0;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .navbar .user-info i {
+            margin-right: 10px;
+            color: #343a40;
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #ffffff;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 250px;
+                position: fixed;
+                height: 100vh;
+            }
+            .navbar {
+                width: 100%;
+                width: calc(100% - 250px);
+                left: 250px;
+                position: fixed;
+                top: 0;
+            }
+            .main-content {
+                margin-left: 250px;
+                padding-top: 80px;
+            }
+        }
+
+
+        .feedback-card {
+            padding: 10px;
+            border-radius: 18px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .feedback-card:hover {
+            /* Slightly increase card size on hover */
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+            /* Deeper shadow on hover */
+        }
+
+        .star-rating {
+            color: #FFD700;
+            /* Gold color for stars */
+        }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="text-center">
-        <h1>Review Management</h1>
-    </header>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>Eyewear</h2>
+            <a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <hr>
+            <a href="admin_product.html"><i class="fas fa-box-open"></i> Products</a>
+            <hr>
+            <a href="admin_order.html"><i class="fas fa-shopping-cart"></i> Orders</a>
+            <hr>
+            <a href="admin_customer.html"><i class="fas fa-user"></i> Users</a>
+            <hr>
+            <a href="admin_feedback.html"><i class="fas fa-comments"></i> Feedback</a>
+            <hr>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <hr>
+        </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="admin_dashboard.html">Dashboard</a></li>
-            <li><a href="admin_product.html">Products</a></li>
-            <li><a href="admin_order.html">Orders</a></li>
-            <li><a href="admin_customer.html">Customers</a></li>
-            <li><a href="admin_feedback.html">Feedback</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
+           <div class="navbar">
+        <h4>Manages Feedback</h4>
+        <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Admin</span>
+        </div>
     </div>
 
-    <!-- Content -->
-    <div class="content">
-            <div class="row" id="review-list">
-                <!-- User review cards will be added dynamically here -->
-            </div>
-    </div>
-
-    <script>
-        // Dummy review data (replace with actual data from backend)
-        const reviews = [
-            { user: "Meet Patel", review: "Great product! I love how comfortable these glasses.", rating: 4, date: "2024-10-01" },
-            { user: "Zeel Patel", review: "Good value for the price, but delivery was delayed.", rating: 5, date: "2024-10-02" },
-            { user: "Krunal Patel", review: "The quality is okay, but not as expected.", rating: 3, date: "2024-10-03" },
-            { user: "Satish Patel", review: "Not satisfied with the product. Could be better.", rating: 2, date: "2024-10-04" },
-        ];
-
-        // Function to render review list in card format
-        function renderReviewList() {
-            const reviewList = document.getElementById("review-list");
-            reviewList.innerHTML = "";
-
-            reviews.forEach(review => {
-                const col = document.createElement("div");
-                col.className = "col-md-3"; // Adjust column size
-                col.innerHTML = `
-                    <div class="card shadow-sm">
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+             
+                <div class="col-md-4">
+                    <div class="feedback-card card">
+                        <div class="card-header">
+                            <h5><strong>Order ID:</strong> 1</h5>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">${review.user}</h5>
-                            <p class="card-text">${review.review}</p>
-                            <p class="stars">${'★'.repeat(review.rating)}${'★'.repeat(5 - review.rating).replace(/★/g, '<span class="empty-star">★</span>')}</p>
-                            <p class="text-muted">${review.date}</p>
+                         <p><strong>Name:</strong> meet</p>
+                            <p><strong>Email:</strong> meet@gmail.com</p>
+                            <p><strong>Mobile No:</strong> +1 234 567 890</p>
+                            <p><strong>Description:</strong> Good Products</p>
+                            <p><strong>Rating:</strong> 
+                                <span class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </p>
                         </div>
                     </div>
-                `;
-                reviewList.appendChild(col);
-            });
-        }
+                </div> <div class="col-md-4">
+                    <div class="feedback-card card">
+                        <div class="card-header">
+                            <h5><strong>Order ID:</strong> 2</h5>
+                        </div>
+                        <div class="card-body">
+                         <p><strong>Name:</strong> meet</p>
+                            <p><strong>Email:</strong> meet@gmail.com</p>
+                            <p><strong>Mobile No:</strong> +1 234 567 890</p>
+                            <p><strong>Description:</strong> Good Products</p>
+                            <p><strong>Rating:</strong> 
+                                <span class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div> <div class="col-md-4">
+                    <div class="feedback-card card">
+                        <div class="card-header">
+                            <h5><strong>Order ID:</strong> 3</h5>
+                        </div>
+                        <div class="card-body">
+                         <p><strong>Name:</strong> meet</p>
+                            <p><strong>Email:</strong> meet@gmail.com</p>
+                            <p><strong>Mobile No:</strong> +1 234 567 890</p>
+                            <p><strong>Description:</strong> Good Products</p>
+                            <p><strong>Rating:</strong> 
+                                <span class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                            
+            </div>
+        </div>
+    </div>
 
-        // Initialize review list
-        renderReviewList();
-    </script>
+ 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
