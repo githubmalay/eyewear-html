@@ -1,154 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management - EYEWEAR</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="admin_style.css">
+    <title>Manage Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
-        /* Set a fixed height for the order cards */
-        .card {
-            height: 100%;
+        body {
+            background-color: #f8f9fa;
+            /* Light grey background */
+            font-family: 'Poppins', sans-serif;
+            color: #343a40;
+            /* Dark text */
         }
 
-        /* Ensure the columns fill the available height */
-        .col {
+        .wrapper {
             display: flex;
-            align-items: stretch;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        /* Make the card body take up all available space */
-        .card-body {
+        .sidebar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s;
+        }
+
+        .sidebar h2 {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            color: #343a40;
+            text-decoration: none;
+            display: block;
+            padding: 0px 14px;
+            margin: 10px 0;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: black;
+        }
+
+        .navbar {
+            position: relative;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 17px 20px;
+             color: #343a40;
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h4 {
+            margin: 0;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .navbar .user-info i {
+            margin-right: 10px;
+            color: #343a40;
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #ffffff;
+            width: 100%;
+        }
+
+        .card {
+            margin: 5px;
+            border: none;
+            /* Remove border */
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Card shadow */
+            transition: transform 0.3s ease;
+            /* Smooth hover transition */
+
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 250px;
+                position: fixed;
+                height: 100vh;
+            }
+            .navbar {
+                width: 100%;
+                width: calc(100% - 250px);
+                left: 250px;
+                position: fixed;
+                top: 0;
+            }
+            .main-content {
+                margin-left: 250px;
+                padding-top: 80px;
+            }
         }
     </style>
+
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Order Management</h1>
-    </header>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Eyewear</h2>
+            <a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <hr>
+            <a href="admin_product.html"><i class="fas fa-box-open"></i> Products</a>
+            <hr>
+            <a href="admin_order.html"><i class="fas fa-shopping-cart"></i> Orders</a>
+            <hr>
+            <a href="admin_customer.html"><i class="fas fa-user"></i> Users</a>
+            <hr>
+            <a href="admin_feedback.html"><i class="fas fa-comments"></i> Feedback</a>
+            <hr>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <hr>
+        </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="admin_dashboard.html">Dashboard</a></li>
-            <li><a href="admin_product.html">Products</a></li>
-            <li><a href="admin_order.html">Orders</a></li>
-            <li><a href="admin_customer.html">Customers</a></li>
-            <li><a href="admin_feedback.html">Feedback</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </div>
-
-    <div class="content">
-        <div class="container-fluied m-2 mt-2">
-            <div class="row" id="order-list">
-                <!-- Order items will be dynamically added here -->
+        <!-- Navbar -->
+        <div class="navbar">
+            <h4>Products</h4>
+            <div class="user-info">
+                <button type="button" class="btn btn-dark btn-sm mx-4" data-bs-toggle="modal"
+                    data-bs-target="#addProductModal">
+                    Add Product
+                </button>
+                <i class="fas fa-user-circle"></i>
+                <span>Admin</span>
             </div>
         </div>
 
-        <script>
-            const orders = [
-                {
-                    id: 1,
-                    customer_name: "Meet Patel",
-                    customer_email: "meet@gmail.com",
-                    customer_address: "123 Main St, Cityville",
-                    product_name: "Vincent Chase",
-                    quantity: 2,
-                    total_price: 200,
-                    payment_date: "2024-10-01",
-                    payment_method: "Credit Card",
-                    payment_status: "Completed"
-                },
-                {
-                    id: 2,
-                    customer_name: "Zeel Patel",
-                    customer_email: "zeel@gmail.com",
-                    customer_address: "456 Elm St, Townsville",
-                    product_name: "Sunglasses",
-                    quantity: 1,
-                    total_price: 150,
-                    payment_date: "2024-10-02",
-                    payment_method: "Debit Card",
-                    payment_status: "Pending"
-                },
-                {
-                    id: 3,
-                    customer_name: "Krunal Patel",
-                    customer_email: "krunal@gmail.com",
-                    customer_address: "789 Oak St, Villagetown",
-                    product_name: "Vincent Chase",
-                    quantity: 5,
-                    total_price: 500,
-                    payment_date: "2024-10-03",
-                    payment_method: "Debit Card",
-                    payment_status: "Processing"
-                }
-            ];
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Product List -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <img src="img12.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Blu (ID:1)</h5>
+                                    <p class="card-text">Stylish and comfortable eyewear for daily use.</p>
+                                    <p class="card-text">power lens</p>
+                                    <p class="card-text"><strong>Price: </strong>₹1200</p>
+                                    <div>
 
-            function renderOrderList() {
-                const orderList = document.getElementById("order-list");
-                orderList.innerHTML = "";
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editProductModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
 
-                orders.forEach(order => {
-                    const col = document.createElement("div");
-                    col.classList.add("col-12", "col-md-6", "col-lg-4", "mb-4");
-                    col.innerHTML = `
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">${order.customer_name}</h5>
-                                <p class="card-text"><strong>Email:</strong> ${order.customer_email}</p>
-                                <p class="card-text"><strong>Address:</strong> ${order.customer_address}</p>
-                                <p class="card-text"><strong>Product:</strong> ${order.product_name}</p>
-                                <p class="card-text"><strong>Quantity:</strong> ${order.quantity}</p>
-                                <p class="card-text"><strong>Total Price:</strong> ₹${order.total_price}</p>
-                                <p class="card-text"><strong>Payment Date:</strong> ${order.payment_date}</p>
-                                <p class="card-text"><strong>Payment Method:</strong> ${order.payment_method}</p>
-                                <p class="card-text"><strong>Status:</strong></p>
-                                <select class="form-control" onchange="updateStatus(${order.id}, this.value)">
-                                    <option value="Pending" ${order.payment_status === "Pending" ? "selected" : ""}>Pending</option>
-                                    <option value="Processing" ${order.payment_status === "Processing" ? "selected" : ""}>Processing</option>
-                                    <option value="Out for Delivery" ${order.payment_status === "Out for Delivery" ? "selected" : ""}>Out for Delivery</option>
-                                    <option value="Delivered" ${order.payment_status === "Delivered" ? "selected" : ""}>Delivered</option>
-                                </select>
-                                <div class="order-actions mt-3">
-                                    <button class="btn btn-primary" onclick="editOrder(${order.id})">Edit</button>
-                                    <button class="btn btn-danger" onclick="removeOrder(${order.id})">Delete</button>
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-success">Out of Stock </a>
                                 </div>
                             </div>
                         </div>
-                    `;
-                    orderList.appendChild(col);
-                });
-            }
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
 
-            function updateStatus(orderId, newStatus) {
-                const order = orders.find(order => order.id === orderId);
-                if (order) {
-                    order.payment_status = newStatus;
-                    renderOrderList();
-                }
-            }
+                                <img src="img9.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Sun (ID:2)</h5>
+                                    <p class="card-text">Protect your eyes from the sun with this premium eyewear</p>
+                                    <p class="card-text">Sunglasses</p>
+                                    <p class="card-text"><strong>Price: </strong>₹3000</p>
+                                    <div>
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editProductModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
 
-            function removeOrder(orderId) {
-                const index = orders.findIndex(order => order.id === orderId);
-                if (index !== -1) {
-                    orders.splice(index, 1);
-                    renderOrderList();
-                }
-            }
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                 
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-success">Out of Stock </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
 
-            // Initialize order list
-            renderOrderList();
-        </script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+                                <img src="hust2.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Huster (ID:3)</h5>
+                                    <p class="card-text">Elegant eyewear for a fashionable look.</p>
+                                    <p class="card-text">  Power Lens                                    </p>
+                                    <p class="card-text"><strong>Price: </strong>3599</p>
+                                    <div>
+
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editProductModal">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-danger">In Stock </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+
+                                <img src="11.2.jpg" class="card-img-top" alt=""
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Eyewear Air (ID:4)</h5>
+                                    <p class="card-text">Lightweight and durable eyewear.</p>
+                                    <p class="card-text">Sunglasses</p>
+                                    <p class="card-text"><strong>Price: </strong>1999</p>
+                                    <div>
+
+                                    </div>
+                                    <button type="button" class="btn btn-warning text-white btn-md mb-3 "
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editProductModal">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+
+                                    <a href="#" class="btn btn-danger btn-md mb-3"><i class="fas fa-trash"></i>
+                                        Delete</a>
+                                    <a href="#" type="submit" name="toggle_stock_status"
+                                        class=" w-100 btn btn-danger">In Stock </a>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Product Modal -->
+                        <div class="modal fade" id="editProductModal" tabindex="-1"
+                            aria-labelledby="editProductModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="manage_product.html" method="POST" enctype="multipart/form-data">
+                                            <input type="hidden" name="product_id"
+                                                value="1">
+                                            <div class="form-group mb-3">
+                                                <label for="product_name">Product Name</label>
+                                                <input type="text" class="form-control" name="name" id="product_name"
+                                                    value="Eyewear" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="product_description">Description</label>
+                                                <textarea class="form-control" name="description"
+                                                    id="product_description"
+                                                    required>Protect your eyes from the sun with this premium eyewear</textarea>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="product_category">Category</label>
+                                                <select class="form-control" name="category" id="product_category"
+                                                    required>
+                                                    <option value="Sunglasses" 
+                                                        >Sunglasses</option>
+                                                    <option value="Zero Power Frames">Zero Power Frames</option>
+                                                    <option value="Power Lens"
+                                                        >Power Lens</option>
+                                                    <option value="Combo frames" 
+                                                        >Combo frames</option>
+                                                    <!-- Add more categories here -->
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="product_price">Price</label>
+                                                <input type="number" class="form-control" name="price"
+                                                    id="product_price" value="1"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="product_image">Product Image</label>
+                                                <input type="file" class="form-control" name="image" id="product_image">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" name="update_product">Update
+                                                Product</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="manage_product.html" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="product_name">Product Name</label>
+                            <input type="text" class="form-control" name="name" id="product_name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product_description">Description</label>
+                            <textarea class="form-control" name="description" id="product_description"
+                                required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product_category">Category</label>
+                            <select class="form-control" name="category" id="product_category" required>
+                                <option value="Sunglasses">Sunglasses</option>
+                                <option value="Zero Power Frames">Zero Power Frames</option>
+                                <option value="Power Lens">Power Lens</option>
+                                <option value="Combo frames">Combo frames</option>
+
+                                <!-- Add more categories here -->
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product_price">Price</label>
+                            <input type="number" class="form-control" name="price" id="product_price" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="product_image">Product Image</label>
+                            <input type="file" class="form-control" name="image" id="product_image" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="add_product">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
